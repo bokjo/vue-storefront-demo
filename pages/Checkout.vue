@@ -1,5 +1,5 @@
 <template>
-  <div id="checkout">
+  <!-- <div id="checkout">
     <div class="checkout">
       <div class="checkout__main">
         <SfSteps
@@ -27,10 +27,9 @@
         </transition>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div>
-    // Other checkout components
     <adyen-checkout
       :value="priceMock.amount"
       :currency="priceMock.currency"
@@ -45,40 +44,69 @@
 import { SfSteps, SfButton } from '@storefront-ui/vue';
 import CartPreview from '~/components/Checkout/CartPreview';
 import { computed } from '@vue/composition-api';
-import AdyenCheckout from 'nuxt-adyen-module/src/runtime/AdyenCheckout.vue';
+import AdyenCheckout from 'nuxt-adyen-module/dist/runtime/AdyenCheckout.vue';
 
-const STEPS = {
-  shipping: 'Shipping',
-  billing: 'Billing',
-  payment: 'Payment'
-};
+// const STEPS = {
+//   shipping: 'Shipping',
+//   billing: 'Billing',
+//   payment: 'Payment'
+// };
 
+// export default {
+//   name: 'Checkout',
+//   components: {
+//     SfButton,
+//     SfSteps,
+//     CartPreview
+//   },
+//   setup(props, context) {
+//     const currentStep = computed(() => context.root.$route.path.split('/').pop());
+//     const currentStepIndex = computed(() => Object.keys(STEPS).findIndex(s => s === currentStep.value));
+//     const isThankYou = computed(() => currentStep.value === 'thank-you');
+
+//     const handleStepClick = (stepIndex) => {
+//       const key = Object.keys(STEPS)[stepIndex];
+//       context.root.$router.push(`/checkout/${key}`);
+//     };
+
+//     return {
+//       handleStepClick,
+//       STEPS,
+//       currentStepIndex,
+//       isThankYou,
+//       currentStep
+//     };
+//   }
+// };
 export default {
-  name: 'Checkout',
   components: {
-    SfButton,
-    SfSteps,
-    CartPreview
+    AdyenCheckout
   },
-  setup(props, context) {
-    const currentStep = computed(() => context.root.$route.path.split('/').pop());
-    const currentStepIndex = computed(() => Object.keys(STEPS).findIndex(s => s === currentStep.value));
-    const isThankYou = computed(() => currentStep.value === 'thank-you');
-
-    const handleStepClick = (stepIndex) => {
-      const key = Object.keys(STEPS)[stepIndex];
-      context.root.$router.push(`/checkout/${key}`);
-    };
-
+  data () {
     return {
-      handleStepClick,
-      STEPS,
-      currentStepIndex,
-      isThankYou,
-      currentStep
-    };
+      implementedPaymentMethods:
+      [
+        'scheme',
+        'ideal',
+        'dotpay',
+        'giropay',
+        'sepadirectdebit',
+        'directEbanking',
+        'ach',
+        'alipay',
+        'klarna_paynow',
+        'klarna',
+        'klarna_account',
+        'boletobancario_santander'
+      ],
+      locale: 'en_US',
+      priceMock: {
+        amount: 1000,
+        currency: 'EUR'
+      }
+    }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

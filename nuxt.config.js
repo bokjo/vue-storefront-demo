@@ -81,20 +81,18 @@ export default {
     'cookie-universal-nuxt',
     'vue-scrollto/nuxt',
     '@vue-storefront/middleware/nuxt',
-    ['nuxt-adyen-module', {
-      merchantAccount: "Propellor284",
-      returnUrl: "http://localhost:3000/api/handleShopperRedirect",
-      checkoutEndpoint: "http://localhost:3000/checkout",
-      apiKey: "AQEnhmfuXNWTK0Qc+iSAgGsoouiXR5kfVcf85/Usu5evfwAcEJaWPRkdEMFdWw2+5HzctViMSCJMYAc=-g4Ng2rYU3w333hcuYZKGz1RAY06O7ozEWp01l6Nr7/I=-QsY%}}9d5AfC9>)<",
-      origin: "http://localhost:3000",
-      channel: "Web",
-      hmacKey: "10001|AE7852658D6D3F4C88CFF94E6EDF39541DAD4C2EBA9AB85653D00659A50FE2A8BACF3ECF860FECFBF95729054B1988B0CDC964EFC3FA87544548A5E8F6430AE08373EF581F10C49494F58E05DFAAF827D170FD484847ABCF30C437D6913C132A1987A4A1D39841508F5E7D292C54F369CF14663204C7869395429FEDD663726A04E87ED611CED3B3397DE1E11CA2783B43D4CE221ABF367D2FB101815E2C1C1FBE236F1DADAF5D501D68048615ED1F687BEEB6BEF045DE2EB39210C7F7B9716210EDA8133304DA0FEE5E95A4E7811631DCFA87586413442ED4E4B42D79C53311155F4EDDD699A9FF568CDD24885F316CFA7DF0AF74E0787125676E92C30DC1E3",
-      environment: "test",
-      clientKey: "test_ZAYRTMFQQ5EZLL5A2AYV5RUDDY7HDW5D",
-    }]
+    'nuxt-adyen-module'
   ],
   adyen: {
-    /* module options */
+    merchantAccount: process.env.ADYEN_MERCHANT_ACCOUNT,
+    returnUrl: process.env.ADYEN_RETURN_URL,
+    checkoutEndpoint: process.env.ADYEN_CHECKOUT_ENDPOINT,
+    apiKey: process.env.ADYEN_APIKEY,
+    origin: process.env.ADYEN_ORIGIN,
+    channel: process.env.ADYEN_CHANNEL,
+    hmacKey: process.env.ADYEN_HMACKEY,
+    environment: process.env.ADYEN_ENVIRONMENT,
+    clientKey: process.env.ADYEN_CLIENTKEY,
   },
   i18n: {
     currency: 'USD',
