@@ -1,0 +1,21 @@
+{
+  "functions": {
+    "source": "functions",
+    "predeploy": [
+      "yarn build && rm -rf functions/nuxt && cp -r .nuxt/ functions/nuxt/"
+    ]
+  },
+  "hosting": {
+    "predeploy": [
+      "rm -rf public/* && mkdir -p public/_nuxt && cp -r .nuxt/dist/client/ public/_nuxt && cp -a static/. public/"
+    ],
+    "public": "public",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "function": "vsf_demo"
+      }
+    ]
+  }
+}
